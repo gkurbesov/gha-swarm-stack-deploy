@@ -1,5 +1,5 @@
 name: Swarm stack deploy
-description: Docker Swarm stack deploy stack via SSH
+description: Deploy the stack to the swarm via SSH
 inputs:
   ssh_private_key:
     description: Private SSH key used for logging into remote system.
