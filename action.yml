@@ -1,0 +1,36 @@
+name: Swarm stack deploy
+description: Docker Swarm stack deploy stack via SSH
+inputs:
+  ssh_private_key:
+    description: Private SSH key used for logging into remote system.
+    required: true
+  ssh_host:
+    description: Remote host name.
+    required: true
+  ssh_port:
+    description: Remote SSH port.
+    default: 22
+    required: true
+  ssh_user:
+    description: Remote user name.
+    required: true
+  service_prefix:
+    description: Prefix for service containers.
+    required: true
+  yaml_source_path:
+    description: Path for source of stack
+    required: true
+  yaml_filename:
+    description: Stack file to use
+    required: true
+runs:
+  using: docker
+  image: Dockerfile
+  env:
+    SSH_USER: ${{ inputs.ssh_user }}
+    SSH_HOST: ${{ inputs.ssh_host }}
+    SSH_PORT: ${{ inputs.ssh_port }}
+    SSH_PRIVATE_KEY: ${{ inputs.ssh_private_key }}
+    SERVICE_PREFIX: ${{ inputs.service_prefix }}
+    YAML_SOURCE_PATH: ${{ inputs.yaml_source_path }}
+    YAML_FILENAME: ${{ inputs.yaml_filename }}
